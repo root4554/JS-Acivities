@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Gestion de dias</title>
+  </head>
+
+  <body>
+    <script src="http://185.60.40.210/2daw3/Fechas.js"></script>
+    <!-- <script>
+      function DiaSemana(dia) {
+        //Ver 4.0
+        //Autores: ANASS, ALEX y JORGE
+        //Recibe un parámetro de tipo Date y devuelve el dia coreespondiente a la semana
+        if (Number.isNaN(Date.parse(dia))) {
+          return "Fecha no válida";
+        }
+        let fecha = new Date(dia);
+        let dias = fecha.getDay();
+        let semana = [
+          "Domingo",
+          "Lunes",
+          "Martes",
+          "Miércoles",
+          "Jueves",
+          "Viernes",
+          "Sábado",
+        ];
+        return semana[dias];
+      }
+    </script> -->
+    <p>
+      Dia 1
+      <input type="text" id="sDia1" />
+      <input
+        type="button"
+        id="button"
+        value="Nombre dia"
+        onClick="resultDia.innerHTML = DiaSemana(sDia1.value)"
+      />
+      <span id="resultDia"></span>
+    </p>
+
+    <p>
+      Dia 2
+      <input type="text" id="sDia2" />
+      <input
+        type="button"
+        id="button2"
+        value="Nombre mes"
+        onClick="resultMes.innerHTML = NombreMes(sDia2.value)"
+      />
+      <span id="resultMes"></span>
+    </p>
+
+    <p>
+      <input
+        type="button"
+        value="Diferencia dias"
+        onClick="resultDifDias.innerHTML = DifDias(sDia1.value, sDia2.value)"
+      />
+      <span id="resultDifDias"></span>
+    </p>
+
+    <p>
+      <input
+        type="button"
+        value="Fecha Dia 1 Bisiesto?"
+        onClick="resultBisiesto.innerHTML = EsBisiesto(sDia1.value)"
+      />
+      <span id="resultBisiesto"></span>
+    </p>
+
+    <p>
+      <input
+        type="button"
+        name="button"
+        value="Dias fin de ano"
+        onClick="resultfinAno.innerHTML = AFinDeAgno()"
+      />
+      <span id="resultfinAno"></span>
+    </p>
+
+    <p>
+      <input type="text" id="dDia" />
+      <input
+        type="button"
+        id="button6"
+        value="Dias despues de Dia1"
+        onClick="resultFecha.innerHTML = DentroDeDias(sDia1.value)"
+      />
+      <span id="resultFecha"></span>
+    </p>
+  </body>
+</html>

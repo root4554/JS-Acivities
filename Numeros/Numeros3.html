@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boton 0-9</title>
+    <script>
+        var i = 0;
+        function Siguiente(){
+            imNums.src=`Imagenes/n${i = i==9 ? 0 : i+1}.gif`;
+        }
+        function Anterior(){
+            imNums.src=`Imagenes/n${i = i==0 ? 9 : i-1}.gif`;
+        }
+    </script>
+</head>
+<body>
+    <img id="imNums" src="Imagenes/n0.gif"><br>
+    <button style="width: 75px;" onclick="Siguiente()"><h1>+</h1></button>
+    <button style="width: 75px;" onclick="Anterior()"><h1>-</h1></button>
+</body>
+</html>

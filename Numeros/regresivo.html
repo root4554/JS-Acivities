@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <img id="num1" src="Imagenes/n0.gif" alt="" />
+    <img id="num2" src="Imagenes/n0.gif" alt="" />
+    <img id="num3" src="Imagenes/n0.gif" alt="" />
+    <input type="text" id="numbers" />
+    <button onclick="changePic()">Start</button>
+
+    <script>
+      function testNumbers(number) {
+        if (number >= 0 && number <= 999) {
+          return true;
+        } else {
+          alert("Please enter a number between 0 and 999");
+          return false;
+        }
+      }
+
+      let inputText = document.getElementById("numbers");
+      let inputvalue = inputText.value;
+
+        function changePic(numbers) {
+            console.log(numbers)
+          let newNumbers = numbers.toString().split("");
+          let num1 = newNumbers[0];
+          let num2 = newNumbers[1];
+          let num3 = newNumbers[2];
+          console.log(num1, num2, num3);
+          num1 = document.getElementById("num1").src = `Imagenes/n${num1}.gif`;
+          num2 = document.getElementById("num2").src = `Imagenes/n${num2}.gif`;
+          num3 = document.getElementById("num3").src = `Imagenes/n${num3}.gif`;
+        };
+        inputText.addEventListener("input", e => changePic(e.target.value));
+
+    //   i = 234;
+    //   a = i + "";
+    //   ("234");
+    //   a[0];
+    //   ("2");
+    </script>
+  </body>
+</html>

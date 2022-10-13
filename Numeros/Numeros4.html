@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Boton 0-9</title>
+    <script>
+      var i = 0;
+      function move() {
+        btn1 = document.getElementById("btn1");
+        if (btn1) {
+          imNums.src = `Imagenes/n${(i = i == 9 ? 0 : i + 1)}.gif`;
+        } else {
+          imNums.src = `Imagenes/n${(i = i == 0 ? 9 : i - 1)}.gif`;
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <img id="imNums" src="Imagenes/n0.gif" /><br />
+    <button id="btn1" value="Siguente" onclick="move()">+</button>
+    <button id="btn2" value="atras" onclick="move()">-</button>
+  </body>
+</html>

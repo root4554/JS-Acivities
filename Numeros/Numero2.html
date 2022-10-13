@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    
+        <img id="imagen" src="Imagenes/n0.gif" />
+        
+        <button onclick="imagen.src = `Imagenes/n${add=(add+1)%10}.gif`">+</button>       
+        <button onclick="imagen.src = `Imagenes/n${add=(add-1) == 0 ? 9 : add-1 }.gif`">-</button>
+
+        <script>
+            let add = 0
+            console.log("mas :"+add);
+            let imagen = document.getElementById("imagen");
+        </script>
+</body>
+</html>
