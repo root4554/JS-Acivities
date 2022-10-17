@@ -7,17 +7,27 @@
     <title>Document</title>
   </head>
   <body>
+    <input type="text" placeholder="puzzle length" />
+    <input type="button" value="Create puzzle" onclick="createPuzzle()" />
+    <div id="puzzle"></div>
     <script src="http://185.60.40.210/2daw3/Juegos.js"></script>
     <script>
-      let lista = Aleatorios(3);
+      function createListe() {
+        let pL = document.querySelector("input").value;
+        let lista = Aleatorios(pL);
+        console.log(lista);
+        return lista;
+      }
+      // let lista = Aleatorios(4);
 
-      function createPuzzle() {
+      function createImages(lista) {
+        lista = createListe();
         document.write(`<table>`);
         for (i = 0; i < lista.length; i++) {
           document.write(`<tr>`);
           for (j = 0; j < lista[i].length; j++) {
             document.write(
-              `<th><img onclick="alert('${i},${j}')" src="Numeros/n${lista[i][j]}.gif"></th>`
+              `<th><img id='imBola${i},${j}' value="${i}${j}" src="Numeros/n${lista[i][j]}.gif"></th>`
             );
           }
           document.write(`</tr>`);
@@ -25,8 +35,23 @@
         document.write(`</table>`);
       }
 
-      function checkmove() {}
-      createPuzzle();
+      function checkmove() {
+        imBolas = document.querySelectorAll("img");
+        imBolas.forEach((Bola /* ,index*/) => {
+          Bola.addEventListener("click", () => {
+            // console.log(Math.floor(index / 3), index % 3);
+            let BolaValue = Bola.getAttribute("value");
+            let BolaX = BolaValue[0];
+            let BolaY = BolaValue[1];
+            if (BolaX) alert("hola" + BolaValue[0] + " , " + BolaValue[1]);
+          });
+        });
+      }
+      function createPuzzle() {
+        createListe();
+        createImages();
+        checkmove();
+      }
     </script>
   </body>
 </html>
