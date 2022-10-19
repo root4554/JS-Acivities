@@ -9,7 +9,10 @@
   <body>
     <input type="text" placeholder="puzzle length" />
     <input type="button" value="Create puzzle" onclick="createPuzzle()" />
-    <div id="puzzle"></div>
+    <div id="puzzle">
+      <table></table>
+    </div>
+
     <script src="http://185.60.40.210/2daw3/Juegos.js"></script>
     <script>
       function createListe() {
@@ -18,24 +21,28 @@
         console.log(lista);
         return lista;
       }
-      // let lista = Aleatorios(4);
+      const lista = createListe();
 
-      function createImages(lista) {
-        lista = createListe();
-        document.write(`<table>`);
-        for (i = 0; i < lista.length; i++) {
-          document.write(`<tr>`);
-          for (j = 0; j < lista[i].length; j++) {
-            document.write(
-              `<th><img id='imBola${i},${j}' value="${i}${j}" src="Numeros/n${lista[i][j]}.gif"></th>`
-            );
-          }
-          document.write(`</tr>`);
-        }
-        document.write(`</table>`);
+      function clearTr() {
+        let tr = document.querySelectorAll("tr");
+        tr.forEach((x) => {
+          x.remove();
+        });
       }
 
-      function checkmove() {
+      function createImages() {
+        clearTr();
+        const table = document.querySelector("table");
+        for (i = 0; i < lista.length; i++) {
+          let tr = document.createElement("tr");
+          table.appendChild(tr);
+          for (j = 0; j < lista[i].length; j++) {
+            tr.innerHTML += `<th><img id='imBola${i},${j}' value="${i}${j}" src="Numeros/n${lista[i][j]}.gif"></th>`;
+          }
+        }
+      }
+
+      function checkIndex() {
         imBolas = document.querySelectorAll("img");
         imBolas.forEach((Bola /* ,index*/) => {
           Bola.addEventListener("click", () => {
@@ -43,13 +50,53 @@
             let BolaValue = Bola.getAttribute("value");
             let BolaX = BolaValue[0];
             let BolaY = BolaValue[1];
-            if (BolaX) alert("hola" + BolaValue[0] + " , " + BolaValue[1]);
+            // if (BolaX) alert("hola" + BolaValue[0] + " , " + BolaValue[1]);
           });
         });
       }
+      function checkmove() {
+        // console.log("checkmove");
+        for (i = 0; i < lista.length; i++) {
+          for (j = 0; j < lista[i].length; j++) {
+            let Bola = document.getElementById(`imBola${i},${j}`);
+            // console.log(Bola);
+            Bola.addEventListener("click", () => {
+              BolaX = parseInt(Bola.getAttribute("value")[0]);
+              BolaY = parseInt(Bola.getAttribute("value")[1]);
+              // parseInt(BolaX);
+              // parseInt(BolaY);
+              // console.log(`"${BolaX - 1}"`);
+
+              // const prevRow = Math.max()
+              // const nextRow = Math.min()
+              // const prevCol = Math.max()
+              // const nextCol = Math.min()
+              // if (
+              //   lista[prevRow][currentCol] == 0 ||
+              //   lista[nextRow][currentCol] == 0 ||
+              //   lista[currentRow][nextCol] == 0 ||
+              //   lista[currentRow][nextCol] == 0
+              // )
+
+              console.log("BolaX+1  " + lista[BolaX + 1][BolaY]);
+              console.log("BolaX-1  " + lista[BolaX - 1][BolaY]);
+              console.log("BolaY-1  " + lista[BolaX][BolaY - 1]);
+              console.log("BolaY+1  " + lista[BolaX][BolaY + 1]);
+              if (
+                lista[BolaX][BolaY + 1] == 0 ||
+                lista[BolaX][BolaY - 1] == 0 ||
+                lista[BolaX + 1][BolaY] == 0 ||
+                lista[BolaX - 1][BolaY] == 0
+              ) {
+                console.log(" se puede mover");
+              } else console.log("No se puede mover");
+            });
+          }
+        }
+      }
       function createPuzzle() {
-        createListe();
         createImages();
+        checkIndex();
         checkmove();
       }
     </script>
