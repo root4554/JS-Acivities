@@ -42,6 +42,7 @@ const checkAnswers = () => {
   let inputs = document.querySelectorAll("input");
   inputs.forEach((input, index) => {
     console.log(input.checked);
+    // input.indeterminate = true;
     console.log(aRespuestas[index]);
     if (input.checked === aRespuestas[index]) {
       //   console.log("Correcto");
