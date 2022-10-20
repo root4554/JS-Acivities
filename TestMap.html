@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let aNombres = ["Hidrógeno", "Fluor", "Cloro", "Bromo", "Iodo"];
+      const Contador = (aTabla) => {
+        aContador = [];
+        for (i = 0; i < aTabla.length; i++) {
+          aContador[i] = aNombres[i].length;
+        }
+        return aContador;
+      };
+      const contador2 = (aTabla) => aTabla.map((elemento) => elemento.length);
+    </script>
+  </body>
+</html>
