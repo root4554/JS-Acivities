@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //   function removeVocal(str) {
+      //     var vocal = ["a", "i", "u", "e", "o"];
+      //     var result = "";
+      //     for (var i = 0; i < str.length; i++) {
+      //       if (vocal.indexOf(str[i]) == -1) {
+      //         result += str[i];
+      //       }
+      //     }
+      //     return result;
+      //   }
+
+      //   function SinVocales(cadenaOrigen) {
+      //     //console.log("test")
+      //     //cadenaOrigen.toLowerCase();
+      //     console.log(cadenaOrigen);
+      //     let cadenaResultado = "";
+      //     let esVocal = false;
+      //     let vocales = ["a", "e", "i", "o", "u", "á", "é", "í", "ó", "ú"];
+      //     for (var i = 0; i < cadenaOrigen.length; i++) {
+      //       console.log("primer for");
+      //       esVocal = false;
+      //       for (let j = 0; j < vocales.length; j++) {
+      //         console.log("segundo for");
+      //         if (cadenaOrigen[i] == vocales[j]) {
+      //           console.log("primer if");
+      //           esVocal = true;
+      //         }
+      //       }
+      //       if (!esVocal) {
+      //         cadenaResultado = cadenaResultado + cadenaOrigen[i];
+      //       }
+      //     }
+      //     return cadenaResultado;
+      //   }
+      function Camel(cadena) {
+        //Version 1.0
+        //Autores: Christian, Unai y Martin
+        //Recibe un string y lo devuelve en camel
+        return cadena
+          .split("")
+          .map((char, i) =>
+            i % 2 === 0 ? char.toUpperCase() : char.toLowerCase()
+          )
+          .join("");
+      }
+
+      function removeVowels(string) {
+        return string.replaceAll(/[aeiou]/gi, "");
+      }
+
+    </script>
+  </body>
+</html>

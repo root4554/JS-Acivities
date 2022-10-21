@@ -5,12 +5,118 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,700;0,800;1,500;1,600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Raleway", sans-serif;
+      }
+      .main {
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: rgb(202, 58, 172);
+        background: linear-gradient(
+          198deg,
+          rgba(202, 58, 172, 1) 0%,
+          rgba(202, 58, 172, 1) 35%,
+          rgba(254, 201, 77, 1) 100%
+        );
+      }
+      h1 {
+        font-size: 3rem;
+        text-align: center;
+        font-style: italic;
+        width: 100%;
+        padding: 20px;
+        color: white;
+        border-radius: 20px 20px 0px 0px;
+
+        background: rgb(202, 58, 172);
+        background: linear-gradient(
+          54deg,
+          rgba(202, 58, 172, 1) 0%,
+          rgba(254, 201, 77, 1) 79%,
+          rgba(202, 58, 172, 1) 100%
+        );
+      }
+      .resultP p {
+        font-size: 2rem;
+        font-weight: bold;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      .contents {
+        max-width: 50%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        border-radius: 20px;
+        background: white;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+      }
+      .questions {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        width: 60%;
+      }
+      .answers,
+      .questions {
+        margin: 15px;
+      }
+      .questions p {
+        width: 90%;
+        margin-bottom: 1vh;
+      }
+      .answers p {
+        margin-bottom: 1vh;
+      }
+      button {
+        margin-top: 40px;
+        background-color: #5dd033;
+        padding: 5px 18px;
+        border-radius: 25px;
+        border: 1px solid white;
+        font-size: 20px;
+        color: white;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      button:hover {
+        background-color: #4a9e2a;
+      }
+      button img {
+        height: 22px;
+        width: 22px;
+      }
+      .resultP p {
+        color: white;
+      }
+    </style>
   </head>
   <body>
     <div class="main">
-      <h1>Test</h1>
-      <div class="questions"></div>
-      <button value="Result">Result</button>
+      <div class="contents">
+        <h1>Test</h1>
+        <div class="questions"></div>
+        <div class="answers"></div>
+      </div>
+
+      <button value="Result" onclick="checkAnswers()">
+        <img src="./icons8-marca-de-verificación-32.png" alt="" />
+        Result
+      </button>
       <div class="resultP">
         <p></p>
       </div>

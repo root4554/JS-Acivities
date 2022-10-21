@@ -38,17 +38,49 @@ const createQuestions = () => {
 };
 createQuestions();
 
-const checkAnswers = () => {
-  let inputs = document.querySelectorAll("input");
-  inputs.forEach((input, index) => {
-    console.log(input.checked);
-    // input.indeterminate = true;
-    console.log(aRespuestas[index]);
-    if (input.checked === aRespuestas[index]) {
-      //   console.log("Correcto");
-    } else {
-      //   console.log("Incorrecto");
+const coloring = () => {
+  const answersP = document.querySelectorAll(".answers p");
+  answersP.forEach((answer) => {
+    if (answer.innerText === "Correcto") {
+      answer.style.color = "green";
+    }
+    if (answer.innerText === "Incorrecto") {
+      answer.style.color = "red";
     }
   });
 };
-checkAnswers();
+const checkAnswers = () => {
+  let inputs = document.querySelectorAll("input");
+  let result = 0;
+  inputs.forEach((input, index) => {
+    if (input.checked) {
+      input.indeterminate = true;
+    }
+    index += 1;
+    if (
+      (input.checked && aRespuestas[index] == true) ||
+      (!input.checked && aRespuestas[index] == false)
+    ) {
+      const correct = document.createElement("p");
+      correct.innerText = "Correcto";
+      correct.style.color = "green";
+      document.querySelector(".answers").appendChild(correct);
+      result += 1;
+    } else if (input.checked && aRespuestas[index] == false) {
+      result -= 0.25;
+      const incorrect = document.createElement("p");
+      incorrect.innerText = "Incorrecto";
+      incorrect.style.color = "red";
+      document.querySelector(".answers").appendChild(incorrect);
+    } else if (input.checked == false) {
+      const noAnswer = document.createElement("p");
+      noAnswer.innerText = "No respondido";
+      document.querySelector(".answers").appendChild(noAnswer);
+    }
+  });
+  coloring();
+  const resultDiv = document.querySelector(".resultP p");
+  resultDiv.innerText = `Tu nota es ${result}`;
+};
+
+// checkAnswers();
