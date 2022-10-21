@@ -49,28 +49,78 @@ const coloring = () => {
     }
   });
 };
+
+const clearAnswers = () => {
+  const answersDiv = document.querySelector(".answers");
+  answersDiv.innerHTML = "";
+};
+
+const changeState = () => {
+  console.log("changeState");
+  const states = ["checked", "indeterminate", "unchecked"];
+  const checkAnswers = document.querySelectorAll("input");
+
+  checkAnswers.forEach((checkAnswer) => {
+    let index = 0;
+    checkAnswer.addEventListener("click", () => {
+      checkAnswer.setAttribute("state", states[index]);
+      index = (index + 1) % 3;
+      console.log(index);
+      console.log(checkAnswer.getAttribute("state"));
+      switch (checkAnswer.getAttribute("state")) {
+        case "checked":
+          checkAnswer.checked = true;
+          checkAnswer.indeterminate = false;
+          break;
+        case "indeterminate":
+          checkAnswer.checked = false;
+          checkAnswer.indeterminate = true;
+          break;
+        case "unchecked":
+          checkAnswer.checked = false;
+          checkAnswer.indeterminate = false;
+          break;
+      }
+    });
+  });
+};
+changeState();
+
+// const checkAnswers = () => {
+//   let inputs = document.querySelectorAll("input");
+//   inputs.forEach((input) => {
+//     input.addEventListener("click", () => {
+//       const state = input.getAttribute("state");
+//       states[("unchecked", "checked", "indeterminate")];
+
+//       clearAnswers();
+//       input.setAttribute("state", (state + 1) % 3);
+//     });
+//   });
+// };
+// checkAnswers();
+
 const checkAnswers = () => {
+  clearAnswers();
   let inputs = document.querySelectorAll("input");
   let result = 0;
   inputs.forEach((input, index) => {
-    if (input.checked) {
-      input.indeterminate = true;
-    }
-    index += 1;
+    const state = input.getAttribute("state");
+    // index += 1;
     if (
-      (input.checked && aRespuestas[index] == true) ||
-      (!input.checked && aRespuestas[index] == false)
+      state === "checked" &&
+      aRespuestas[index] === true &&
+      state === "unchecked" &&
+      aRespuestas[index] === false
     ) {
       const correct = document.createElement("p");
       correct.innerText = "Correcto";
-      correct.style.color = "green";
       document.querySelector(".answers").appendChild(correct);
       result += 1;
     } else if (input.checked && aRespuestas[index] == false) {
       result -= 0.25;
       const incorrect = document.createElement("p");
       incorrect.innerText = "Incorrecto";
-      incorrect.style.color = "red";
       document.querySelector(".answers").appendChild(incorrect);
     } else if (input.checked == false) {
       const noAnswer = document.createElement("p");
@@ -81,6 +131,14 @@ const checkAnswers = () => {
   coloring();
   const resultDiv = document.querySelector(".resultP p");
   resultDiv.innerText = `Tu nota es ${result}`;
+};
+
+const clearCheck = () => {
+  let inputs = document.querySelectorAll("input");
+  inputs.forEach((input) => {
+    input.checked = false;
+    input.indeterminate = false;
+  });
 };
 
 // checkAnswers();
