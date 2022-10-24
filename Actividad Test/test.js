@@ -31,6 +31,8 @@ const createQuestions = () => {
     question = document.createElement("p");
     question.innerText = aPreguntas[index];
     checkAnswer = document.createElement("input");
+    checkAnswer.indeterminate = true;
+    checkAnswer.setAttribute("state", "indeterminate");
     checkAnswer.setAttribute("type", "checkbox");
     questionsDiv.appendChild(question);
     questionsDiv.appendChild(checkAnswer);
@@ -52,12 +54,22 @@ const coloring = () => {
 
 const clearAnswers = () => {
   const answersDiv = document.querySelector(".answers");
+  const resultDiv = document.querySelector(".resultP p");
   answersDiv.innerHTML = "";
+  resultDiv.innerText = "";
+};
+const clearCheck = () => {
+  clearAnswers();
+  let inputs = document.querySelectorAll("input");
+  inputs.forEach((input) => {
+    input.indeterminate = true;
+    input.setAttribute("state", "indeterminate");
+  });
 };
 
 const changeState = () => {
   console.log("changeState");
-  const states = ["checked", "indeterminate", "unchecked"];
+  const states = ["checked", "unchecked", "indeterminate"];
   const checkAnswers = document.querySelectorAll("input");
 
   checkAnswers.forEach((checkAnswer) => {
@@ -65,8 +77,8 @@ const changeState = () => {
     checkAnswer.addEventListener("click", () => {
       checkAnswer.setAttribute("state", states[index]);
       index = (index + 1) % 3;
-      console.log(index);
-      console.log(checkAnswer.getAttribute("state"));
+      // console.log(index);
+      // console.log(checkAnswer.getAttribute("state"));
       switch (checkAnswer.getAttribute("state")) {
         case "checked":
           checkAnswer.checked = true;
@@ -86,43 +98,35 @@ const changeState = () => {
 };
 changeState();
 
-// const checkAnswers = () => {
-//   let inputs = document.querySelectorAll("input");
-//   inputs.forEach((input) => {
-//     input.addEventListener("click", () => {
-//       const state = input.getAttribute("state");
-//       states[("unchecked", "checked", "indeterminate")];
-
-//       clearAnswers();
-//       input.setAttribute("state", (state + 1) % 3);
-//     });
-//   });
-// };
-// checkAnswers();
-
 const checkAnswers = () => {
   clearAnswers();
   let inputs = document.querySelectorAll("input");
   let result = 0;
   inputs.forEach((input, index) => {
     const state = input.getAttribute("state");
-    // index += 1;
+    console.log(state);
+    index += 1;
     if (
-      state === "checked" &&
-      aRespuestas[index] === true &&
-      state === "unchecked" &&
-      aRespuestas[index] === false
+      ((input.checked === true && aRespuestas[index] === true) ||
+        (input.checked === false && aRespuestas[index] === false)) &&
+      state !== "indeterminate"
     ) {
       const correct = document.createElement("p");
       correct.innerText = "Correcto";
       document.querySelector(".answers").appendChild(correct);
       result += 1;
-    } else if (input.checked && aRespuestas[index] == false) {
+      console.log(result);
+    } else if (
+      ((input.checked === true && aRespuestas[index] === false) ||
+        (input.checked === false && aRespuestas[index] === true)) &&
+      state !== "indeterminate"
+    ) {
       result -= 0.25;
+      console.log(result);
       const incorrect = document.createElement("p");
       incorrect.innerText = "Incorrecto";
       document.querySelector(".answers").appendChild(incorrect);
-    } else if (input.checked == false) {
+    } else if (state === "indeterminate") {
       const noAnswer = document.createElement("p");
       noAnswer.innerText = "No respondido";
       document.querySelector(".answers").appendChild(noAnswer);
@@ -131,14 +135,6 @@ const checkAnswers = () => {
   coloring();
   const resultDiv = document.querySelector(".resultP p");
   resultDiv.innerText = `Tu nota es ${result}`;
-};
-
-const clearCheck = () => {
-  let inputs = document.querySelectorAll("input");
-  inputs.forEach((input) => {
-    input.checked = false;
-    input.indeterminate = false;
-  });
 };
 
 // checkAnswers();

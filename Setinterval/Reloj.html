@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="time" style="display: flex">
+      <img id="m1" src="Imagenes/n0.gif" alt="" />
+      <img id="m2" src="Imagenes/n0.gif" alt="" />
+      <h1 style="font-size: 40px">:</h1>
+      <img id="s1" src="Imagenes/n0.gif" alt="" />
+      <img id="s2" src="Imagenes/n0.gif" alt="" />
+    </div>
+
+    <script>
+      const splitNumbers = (m, s) => {
+        let splitedMinutes = m.toString().split("");
+        let m1 = splitedMinutes[0];
+        let m2 = splitedMinutes[1];
+        let splitedSeconds = s.toString().split("");
+        let s1 = splitedSeconds[0];
+        let s2 = splitedSeconds[1];
+        return [m1, m2, s1, s2];
+      };
+      const setNumbers = (m1, m2, s1, s2) => {
+        document.getElementById("m1").src = `Imagenes/n${m1}.gif`;
+        document.getElementById("m2").src = `Imagenes/n${m2}.gif`;
+        document.getElementById("s1").src = `Imagenes/n${s1}.gif`;
+        document.getElementById("s2").src = `Imagenes/n${s2}.gif`;
+        // if(m2 ==null){
+        //   document.getElementById("").src = `Imagenes/n0.gif`;
+        // }
+        // if(s2 ==null){
+        //   document.getElementById("s2").src = `Imagenes/n0.gif`;
+        // }
+      };
+      const getTime = () => {
+        var currentdate = new Date();
+        let m = currentdate.getMinutes();
+        let s = currentdate.getSeconds();
+        // console.log(m);
+        // console.log(s);
+        return [m, s];
+      };
+      const startTime = () => {
+        getTime();
+        let [m, s] = getTime();
+        let [m1, m2, s1, s2] = splitNumbers(m, s);
+        setNumbers(m1, m2, s1, s2);
+      };
+      setInterval(startTime, 1000);
+    </script>
+  </body>
+</html>
