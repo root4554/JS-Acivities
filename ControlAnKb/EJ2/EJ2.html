@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- <p></p> -->
+    <script>
+      const createP = () => {
+        let p = document.createElement("p");
+        p.textContent = "5";
+        p.id = "5";
+        p.style.color = "red";
+        document.querySelector("body").appendChild(p);
+      };
+      createP();
+
+      const changeColor = () => {
+        let p = document.querySelector("p");
+        color = p.style.color;
+        if (color == "red") {
+          p.style.color = "blue";
+        } else {
+          p.style.color = "red";
+        }
+      };
+
+      const checkValue = () => {
+        let p = document.querySelector("p");
+        Valor = parseInt(p.textContent);
+        console.log("valur " + Valor);
+        if (Valor == 10000) {
+          console.log("El valor es 100");
+          Valor = 5;
+          p.textContent = Valor;
+        }
+      };
+
+      const inc = () => {
+        let p = document.querySelector("p");
+        Valor = parseInt(p.textContent);
+        console.log(Valor);
+        console.log(typeof Valor);
+        if (Valor < 10) {
+          Valor = 10;
+          p.textContent = Valor;
+        } else {
+          Valor = Valor + 10;
+          p.textContent = Valor;
+        }
+        checkValue();
+        changeColor();
+      };
+      setInterval(inc, 1000);
+    </script>
+  </body>
+</html>
