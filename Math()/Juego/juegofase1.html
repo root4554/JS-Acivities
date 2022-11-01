@@ -13,25 +13,27 @@
       <table></table>
     </div>
 
-    <!-- <script src="serverScript.js"></script> -->
+    <script src="serverScript.js"></script>
     <script>
+      let lista;
+      let pL;
+
       function createListe() {
-        let pL = document.querySelector("input").value;
-        let lista = Aleatorios(pL);
-        console.log(lista);
+        pL = document.querySelector("input").value;
+        lista = CrearTabla(pL);
         return lista;
       }
-      const lista = createListe();
 
       function clearTr() {
-        let tr = document.querySelectorAll("tr");
-        tr.forEach((x) => {
-          x.remove();
+        let trs = document.querySelectorAll("tr");
+        trs.forEach((tr) => {
+          tr.remove();
         });
       }
 
       function createImages() {
         clearTr();
+
         const table = document.querySelector("table");
         for (i = 0; i < lista.length; i++) {
           let tr = document.createElement("tr");
@@ -44,60 +46,110 @@
 
       function checkIndex() {
         imBolas = document.querySelectorAll("img");
-        imBolas.forEach((Bola /* ,index*/) => {
+        imBolas.forEach((Bola) => {
           Bola.addEventListener("click", () => {
-            // console.log(Math.floor(index / 3), index % 3);
             let BolaValue = Bola.getAttribute("value");
             let BolaX = BolaValue[0];
             let BolaY = BolaValue[1];
-            // if (BolaX) alert("hola" + BolaValue[0] + " , " + BolaValue[1]);
           });
         });
       }
+
+      const checkPuzzle = (lista) => {
+        let check = false;
+        let Results = [];
+        let listInRow = [];
+        for (i = 0; i < lista.length; i++) {
+          for (j = 0; j < lista[i].length; j++) {
+            listInRow.push(lista[i][j]);
+            Results.push(lista[i][j]);
+            listInRow.sort(function (a, b) {
+              return a - b;
+            });
+          }
+        }
+        listInRow.shift();
+        Results.pop();
+        console.log("lista Row " + listInRow);
+        console.log("lista Column " + Results);
+        if (listInRow.toString() == Results.toString()) {
+          check = true;
+          alert("Ganaste");
+        }
+      };
+
+      const move = (
+        BolaX,
+        BolaY,
+        BolaYmas1,
+        BolaYmenos1,
+        BolaXmas1,
+        BolaXmenos1
+      ) => {
+        if (lista[BolaX][BolaYmas1] == 0) {
+          lista[BolaX][BolaYmas1] = lista[BolaX][BolaY];
+          lista[BolaX][BolaY] = 0;
+        }
+        if (lista[BolaX][BolaYmenos1] == 0) {
+          lista[BolaX][BolaYmenos1] = lista[BolaX][BolaY];
+          lista[BolaX][BolaY] = 0;
+        }
+        if (lista[BolaXmas1][BolaY] == 0) {
+          lista[BolaXmas1][BolaY] = lista[BolaX][BolaY];
+          lista[BolaX][BolaY] = 0;
+        }
+        if (lista[BolaXmenos1][BolaY] == 0) {
+          lista[BolaXmenos1][BolaY] = lista[BolaX][BolaY];
+          lista[BolaX][BolaY] = 0;
+        }
+      };
+
       function checkmove() {
-        // console.log("checkmove");
         for (i = 0; i < lista.length; i++) {
           for (j = 0; j < lista[i].length; j++) {
             let Bola = document.getElementById(`imBola${i},${j}`);
-            // console.log(Bola);
+
             Bola.addEventListener("click", () => {
               BolaX = parseInt(Bola.getAttribute("value")[0]);
               BolaY = parseInt(Bola.getAttribute("value")[1]);
-              // parseInt(BolaX);
-              // parseInt(BolaY);
-              // console.log(`"${BolaX - 1}"`);
 
-              // const prevRow = Math.max()
-              // const nextRow = Math.min()
-              // const prevCol = Math.max()
-              // const nextCol = Math.min()
-              // if (
-              //   lista[prevRow][currentCol] == 0 ||
-              //   lista[nextRow][currentCol] == 0 ||
-              //   lista[currentRow][nextCol] == 0 ||
-              //   lista[currentRow][nextCol] == 0
-              // )
+              let max = pL - 1;
+              let min = 0;
 
-              console.log("BolaX+1  " + lista[BolaX + 1][BolaY]);
-              console.log("BolaX-1  " + lista[BolaX - 1][BolaY]);
-              console.log("BolaY-1  " + lista[BolaX][BolaY - 1]);
-              console.log("BolaY+1  " + lista[BolaX][BolaY + 1]);
-              if (
-                lista[BolaX][BolaY + 1] == 0 ||
-                lista[BolaX][BolaY - 1] == 0 ||
-                lista[BolaX + 1][BolaY] == 0 ||
-                lista[BolaX - 1][BolaY] == 0
-              ) {
-                console.log(" se puede mover");
-              } else console.log("No se puede mover");
+              let BolaXmas1 = BolaX + 1;
+              let BolaXmenos1 = BolaX - 1;
+              let BolaYmas1 = BolaY + 1;
+              let BolaYmenos1 = BolaY - 1;
+              if (BolaXmas1 > max) BolaXmas1 = max;
+              if (BolaXmenos1 < min) BolaXmenos1 = min;
+              if (BolaYmas1 > max) BolaYmas1 = max;
+              if (BolaYmenos1 < min) BolaYmenos1 = min;
+
+              move(
+                BolaX,
+                BolaY,
+                BolaYmas1,
+                BolaYmenos1,
+                BolaXmas1,
+                BolaXmenos1
+              );
+              createImages();
+              checkmove();
+              checkPuzzle(lista);
             });
           }
         }
       }
+
+      document.querySelectorAll("img").addEventListener("click", checkmove());
       function createPuzzle() {
-        createImages();
-        checkIndex();
-        checkmove();
+        let pL = document.querySelector("input").value;
+        if (pL > 1 && pL <= 7) {
+          createListe();
+          createImages();
+          checkIndex();
+          checkmove();
+        } else alert("El numero debe estar entre 2 y 7");
       }
     </script>
   </body>
