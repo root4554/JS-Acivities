@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="Windows-1252" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Offers</title>
+  </head>
+  <body>
+    <div class="main">
+      <div class="sidebar">
+        <div class="header">
+          <h1>OfferLand</h1>
+          <div class="filter">
+            <h2>Filter</h2>
+            <!-- <div class="filter__item">
+              <label for="price">Price</label>
+              <input type="number" id="price" />
+            </div> -->
+            <div class="filter__item">
+              <label for="destination">Poblacion</label>
+              <select name="destination" id="destination">
+                <option value="all">All</option>
+                <option value="Irun">Irun</option>
+                <option value="Renteria">Renteria</option>
+                <option value="Hondarribia">Hondarribia</option>
+                <option value="Donostia/SAN SEBASTIÁN">Donostia</option>
+              </select>
+            </div>
+
+            <div class="button">
+              <button>Filter</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="content"></div>
+    </div>
+
+    <script src="../js/json-offers.js"></script>
+    <script src="../js/main-logic.js"></script>
+  </body>
+</html>
