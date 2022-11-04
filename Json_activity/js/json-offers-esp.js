@@ -9969,4 +9969,4 @@ const json_file = `[
   }
 ]`;
 
-const offers = JSON.parse(json_file);
+const offersEsp = JSON.parse(json_file);

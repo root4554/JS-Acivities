@@ -11,11 +11,13 @@ const filterArray = (provincia) => {
   // console.log(offers);
   if (provincia === "All") {
     console.log("dentro if filterArray");
-    return offers;
+    return offersEsp;
   } else {
     console.log("dentro else filterArray, provincia " + provincia);
 
-    let offersFiltres = offers.filter((offer) => offer.municipio == provincia);
+    let offersFiltres = offersEsp.filter(
+      (offer) => offer.municipio == provincia
+    );
     console.log(offersFiltres);
     return offersFiltres;
   }
