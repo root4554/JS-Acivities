@@ -5,6 +5,7 @@
   --seconary-color: #1c1c1e;
   --third-color: #6b6b70;
   --red-color: #ff0098;
+  --red-color-secondary: #db2777;
   --formal-font: "Raleway", sans-serif;
   --cursive-font: "Dancing Script", cursive;
   --vibes-font: "Great Vibes", cursive;
@@ -26,7 +27,8 @@ body {
 .filter__item,
 .button,
 .offer__head,
-.languages {
+.languages,
+.offer__btn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -65,18 +67,20 @@ h1 {
 
 button,
 .offer button {
-  background-color: var(--red-color);
+  background-color: var(--red-color-secondary);
   color: #fff;
-  padding: 10px 20px;
+  padding: 5px 10px;
   border: none;
   border-radius: 5px;
-  font-size: 1.2rem;
+  font-size: 0.95rem;
   font-weight: 500;
   cursor: pointer;
   transition: 0.5s;
 }
 button:hover {
-  background-color: #32de84;
+  background-color: var(--seconary-color);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transition: all 0.5s;
 }
 .content {
   width: 80%;
@@ -87,6 +91,13 @@ button:hover {
 .offer__head p {
   font-weight: 500;
   color: var(--third-color);
+}
+.offer__body p:nth-child(2) {
+  letter-spacing: 0.018em;
+  line-height: 1.4;
+  color: #e7e7e7;
+  font-size: 0.9rem;
+  margin-bottom: 2em;
 }
 .offer__body p {
   margin-bottom: 10px;
@@ -99,11 +110,18 @@ button:hover {
   color: #fff;
   width: fit-content;
 }
-.offer button {
-  padding: 5px 10px;
-  margin-bottom: 10px;
-  float: right;
+.offer__body p:last-child {
+  font-weight: 700;
+  font-size: 0.8rem;
 }
+
+.offer__btn {
+  justify-content: end;
+  width: 100%;
+}
+.offer button {
+}
+
 .languages {
   margin-top: 40px;
 }
@@ -115,6 +133,7 @@ button:hover {
 }
 .languages a {
   color: white;
+  transition: all 0.5s;
 }
 .languages a:hover {
   color: var(--red-color);

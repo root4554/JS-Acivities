@@ -41,7 +41,9 @@ const showOffer = () => {
               <p>${offer.desPuesto}</p>
               <p>${offer.provincia}</p>
               </div>
+            <div class="offer__btn">
               <a href="${offer.url}" target="_blank" ><button>More info</button></a>
+            </div>
               <br>
               <hr>
               <br>
