@@ -78,9 +78,26 @@ const reverseCards = () => {
 const checkWin = () => {
   // si todas las cartas estan boca arriba se muestra el mensaje de victoria
   if (cardsTableBool.flat().every((card) => card == null)) {
-    alert("¡Has ganado!");
+    // alert("¡Has ganado!");
+    const tries = document.querySelector("#counter").innerHTML;
+    const time = document.querySelector("#timer").innerHTML;
+
+    const counterCongrats = (document.querySelector(
+      "#counter-congratulations"
+    ).innerHTML = tries);
+    const timerCongrats = (document.querySelector(
+      "#timer-congratulations"
+    ).innerHTML = time);
+
+    document.querySelector(".AlertCont").style.display = "flex";
   }
 };
+
+const resetGame = () => {
+  // reiniciar la pagina
+  location.reload();
+};
+document.querySelector("#btn-restart").addEventListener("click", resetGame);
 
 // mostrar el numero de clicks
 const showClicks = () => {
@@ -129,6 +146,18 @@ const timer = () => {
 };
 timer();
 
+// load cards animation
+const loadCardsAnimation = () => {
+  const cards = document.querySelectorAll("img");
+  cards.forEach((card, index) => {
+    setTimeout(() => {
+      card.src = "./Baraja/0.png";
+      card.style.transform = `translate(0px, 0px)`;
+      card.style.transition = "all 0.1s ease";
+    }, index * 20);
+  });
+};
+
 // crear el tablero de cartas
 const createCardsTable = () => {
   cardsTable.forEach((row, rowIndex) => {
@@ -139,9 +168,15 @@ const createCardsTable = () => {
       const cardElement = document.createElement("img");
       cardElement.src = "Baraja/0.png";
       rowElement.appendChild(cardElement);
+      // posicionar las cartas con animacion
+      const randomX = Math.floor(Math.random() * (300 - -300)) + -300;
+      const randomY = Math.floor(Math.random() * (300 - -300)) + -300;
+      cardElement.style.transform = `translate(${randomX}px, ${randomY}px)`;
+      // ... FIN de posicionar las cartas con animacion
       flipCards(cardElement, card, cardsTableBool, rowIndex, cardIndex);
     });
     main.appendChild(rowElement);
+    loadCardsAnimation();
   });
 };
 createCardsTable();
