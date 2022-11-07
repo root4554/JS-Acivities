@@ -1,21 +1,60 @@
 const container = document.querySelector(".content");
 const filterBtn = document.querySelector("button");
+let languages = document.querySelectorAll("a");
+let langAtr;
+let offersList;
 
 const getDestination = () => {
   let provincia = document.querySelector("#destination").value;
-  // console.log("destination " + destination);
   return provincia;
 };
 
+const changeLanguage = (languageId) => {
+  if (languageId === "esp") {
+    offersList = offersEsp;
+    setCookie("language", esp, 1);
+  } else if (languageId === "eus") {
+    offersList = offersEus;
+    setCookie("language", eus, 1);
+  }
+};
+
+const getLanguage = () => {
+  languages.forEach((language) => {
+    if (language.getAttribute("selected") == "true") {
+      langAtr = language.getAttribute("id");
+      changeLanguage(langAtr);
+    }
+  });
+};
+const toogleLanguage = () => {
+  languages.forEach((lang, index) => {
+    lang.addEventListener("click", (e) => {
+      langAtr = e.target.getAttribute("selected");
+      if (langAtr === "false" && index === 0) {
+        console.log("primer if " + langAtr + " " + index);
+        lang.setAttribute("selected", "true");
+        languages[1].setAttribute("selected", "false");
+        changeLanguage("eus");
+      } else if (langAtr === "false" && index === 1) {
+        lang.setAttribute("selected", "true");
+        languages[0].setAttribute("selected", "false");
+        changeLanguage("esp");
+      }
+      getLanguage();
+    });
+  });
+};
+toogleLanguage();
+
 const filterArray = (provincia) => {
-  // console.log(offers);
   if (provincia === "All") {
     console.log("dentro if filterArray");
-    return offersEsp;
+    return offersList;
   } else {
     console.log("dentro else filterArray, provincia " + provincia);
 
-    let offersFiltres = offersEsp.filter(
+    let offersFiltres = offersList.filter(
       (offer) => offer.municipio == provincia
     );
     console.log(offersFiltres);
@@ -27,7 +66,6 @@ const showOffer = () => {
   let provincia = getDestination();
   console.log("provincia " + provincia);
   let filtredList = filterArray(provincia);
-  // console.log(filtredList);
   container.innerHTML = "";
 
   filtredList.forEach((offer) => {
@@ -62,4 +100,7 @@ const setCookie = (cname, cvalue, exdays) => {
   let expires = "expires=" + d.toUTCString();
   document.cookie = cname + "=" + cvalue + ";" + expires;
 };
-setCookie(destination, "TEST", 15);
+
+const getCookie = () => {};
+
+setCookie(destination, "Language", 15);
