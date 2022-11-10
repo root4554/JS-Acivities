@@ -4,18 +4,57 @@ let languages = document.querySelectorAll("a");
 let langAtr;
 let offersList;
 
+// Cookies functions
+
+const setCookie = (cname, cvalue, exdays) => {
+  const d = new Date();
+  d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
+  let expires = "expires=" + d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires;
+};
+
+const getCookie = (cname) => {
+  let name = cname + "=";
+  let ca = document.cookie.split(";");
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == " ") {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+};
+
+const checkLanguage = () => {
+  let language = getCookie("Language");
+  console.log("language " + language);
+  if (language == null) {
+    console.log("dentro if checkLanguage");
+    setCookie("language", "esp", 15);
+    offersList = offersEsp;
+  }
+};
+
+checkLanguage();
+
 const getDestination = () => {
   let provincia = document.querySelector("#destination").value;
   return provincia;
 };
 
 const changeLanguage = (languageId) => {
+  let language = getCookie("Language");
   if (languageId === "esp") {
     offersList = offersEsp;
-    setCookie("language", esp, 1);
+    setCookie("language", "esp", 15);
+    language = "esp";
   } else if (languageId === "eus") {
     offersList = offersEus;
-    setCookie("language", eus, 1);
+    setCookie("language", "eus", 15);
+    language = "eus";
   }
 };
 
@@ -94,13 +133,4 @@ const showOffer = () => {
 
 filterBtn.addEventListener("click", showOffer);
 
-const setCookie = (cname, cvalue, exdays) => {
-  const d = new Date();
-  d.setTime(d.getTime() + exdays * 24 * 60 * 60 * 1000);
-  let expires = "expires=" + d.toUTCString();
-  document.cookie = cname + "=" + cvalue + ";" + expires;
-};
-
-const getCookie = () => {};
-
-setCookie(destination, "Language", 15);
+// setCookie(destination, "Language", 15);
