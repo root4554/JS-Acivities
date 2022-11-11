@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Documento sin título</title>
+</head>
+	<script>
+	const createTag = tag => (...children, props = {}) => `<${tag} ${props.style ? `style="${props.style}"` : ''}>${children.join('')}</${tag}>`
+	const p = createTag('p')
+	const h1 = createTag('h1')
+	const div = createTag('div')
+	document.write(div(h1("whaaaaaaaaat"), p('xd')))
+		
+	</script>
+	
+<body>
+	<p id="parafo" onClick="innerHTML = 'Irun'; " >Plaiaundi</p>
+	<p id></p>
+</body>
+</html>
