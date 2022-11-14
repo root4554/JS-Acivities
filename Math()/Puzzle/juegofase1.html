@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" placeholder="puzzle length" />
+    <input type="button" value="Create puzzle" onclick="createPuzzle()" />
+    <div id="puzzle">
+      <table></table>
+    </div>
+
+    <script src="serverScript.js"></script>
+    <script>
+      let lista;
+      let pL;
+
+      function createListe() {
+        pL = document.querySelector("input").value;
+        lista = CrearTabla(pL);
+        return lista;
+      }
+
+      function clearTr() {
+        let trs = document.querySelectorAll("tr");
+        trs.forEach((tr) => {
+          tr.remove();
+        });
+      }
+
+      function createImages() {
+        clearTr();
+
+        const table = document.querySelector("table");
+        for (i = 0; i < lista.length; i++) {
+          let tr = document.createElement("tr");
+          table.appendChild(tr);
+          for (j = 0; j < lista[i].length; j++) {
+            tr.innerHTML += `<th><img id='imBola${i},${j}' value="${i}${j}" src="Numeros/n${lista[i][j]}.gif"></th>`;
+          }
+        }
+      }
+
+      function checkIndex() {
+        imBolas = document.querySelectorAll("img");
+        imBolas.forEach((Bola) => {
+          Bola.addEventListener("click", () => {
+            let BolaValue = Bola.getAttribute("value");
+            let BolaX = BolaValue[0];
+            let BolaY = BolaValue[1];
+          });
+        });
+      }
+
+      const checkPuzzle = (lista) => {
+        let check = false;
+        let Results = [];
+        let listInRow = [];
+        for (i = 0; i < lista.length; i++) {
+          for (j = 0; j < lista[i].length; j++) {
+            listInRow.push(lista[i][j]);
+            Results.push(lista[i][j]);
+            listInRow.sort(function (a, b) {
+              return a - b;
+            });
+          }
+        }
+        listInRow.shift();
+        Results.pop();
+        console.log("lista Row " + listInRow);
+        console.log("lista Column " + Results);
+        if (listInRow.toString() == Results.toString()) {
+          check = true;
+          alert("Ganaste");
+        }
+      };
+
+      const move = (
+        BolaX,
+        BolaY,
+        BolaYmas1,
+        BolaYmenos1,
+        BolaXmas1,
+        BolaXmenos1
+      ) => {
+        if (lista[BolaX][BolaYmas1] == 0) {
+          lista[BolaX][BolaYmas1] = lista[BolaX][BolaY];
+          lista[BolaX][BolaY] = 0;
+        }
+        if (lista[BolaX][BolaYmenos1] == 0) {
+          lista[BolaX][BolaYmenos1] = lista[BolaX][BolaY];
+          lista[BolaX][BolaY] = 0;
+        }
+        if (lista[BolaXmas1][BolaY] == 0) {
+          lista[BolaXmas1][BolaY] = lista[BolaX][BolaY];
+          lista[BolaX][BolaY] = 0;
+        }
+        if (lista[BolaXmenos1][BolaY] == 0) {
+          lista[BolaXmenos1][BolaY] = lista[BolaX][BolaY];
+          lista[BolaX][BolaY] = 0;
+        }
+      };
+
+      function checkmove() {
+        for (i = 0; i < lista.length; i++) {
+          for (j = 0; j < lista[i].length; j++) {
+            let Bola = document.getElementById(`imBola${i},${j}`);
+
+            Bola.addEventListener("click", () => {
+              BolaX = parseInt(Bola.getAttribute("value")[0]);
+              BolaY = parseInt(Bola.getAttribute("value")[1]);
+
+              let max = pL - 1;
+              let min = 0;
+
+              let BolaXmas1 = BolaX + 1;
+              let BolaXmenos1 = BolaX - 1;
+              let BolaYmas1 = BolaY + 1;
+              let BolaYmenos1 = BolaY - 1;
+              if (BolaXmas1 > max) BolaXmas1 = max;
+              if (BolaXmenos1 < min) BolaXmenos1 = min;
+              if (BolaYmas1 > max) BolaYmas1 = max;
+              if (BolaYmenos1 < min) BolaYmenos1 = min;
+
+              move(
+                BolaX,
+                BolaY,
+                BolaYmas1,
+                BolaYmenos1,
+                BolaXmas1,
+                BolaXmenos1
+              );
+              createImages();
+              checkmove();
+              checkPuzzle(lista);
+            });
+          }
+        }
+      }
+
+      document.querySelectorAll("img").addEventListener("click", checkmove());
+      function createPuzzle() {
+        let pL = document.querySelector("input").value;
+        if (pL > 1 && pL <= 7) {
+          createListe();
+          createImages();
+          checkIndex();
+          checkmove();
+        } else alert("El numero debe estar entre 2 y 7");
+      }
+    </script>
+  </body>
+</html>

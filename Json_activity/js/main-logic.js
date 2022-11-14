@@ -29,7 +29,7 @@ const getCookie = (cname) => {
 };
 
 const checkLanguage = () => {
-  let language = getCookie("Language");
+  let language = getCookie("language");
   console.log("language " + language);
   if (language == null) {
     console.log("dentro if checkLanguage");
@@ -37,7 +37,7 @@ const checkLanguage = () => {
     offersList = offersEsp;
   }
 };
-
+// setTimeout(checkLanguage, 3000);
 checkLanguage();
 
 const getDestination = () => {
@@ -46,7 +46,7 @@ const getDestination = () => {
 };
 
 const changeLanguage = (languageId) => {
-  let language = getCookie("Language");
+  let language = getCookie("language");
   if (languageId === "esp") {
     offersList = offersEsp;
     setCookie("language", "esp", 15);

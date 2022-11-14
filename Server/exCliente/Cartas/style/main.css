@@ -1,0 +1,124 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.container {
+  width: 100%;
+  height: 100vh;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  background-image: url(../assets/bg1.jpg);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+}
+h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+img {
+  margin: 2px 3px;
+  cursor: pointer;
+  position: relative;
+  box-shadow: #000 0px 10px 30px;
+  transition: all 0.5s ease;
+}
+
+img[src*="0"]:hover {
+  /* transform: scale(1.1);
+  transition: 0.5s; */
+  animation: loading-cube 0.5s ease-in-out alternate forwards;
+}
+
+@keyframes loading-cube {
+  0% {
+    transform: translateZ(-800px) rotateX(-19deg) rotateY(0deg);
+  }
+  100% {
+    transform: translateZ(-800px) rotateX(-19deg) rotateY(40deg);
+  }
+}
+
+.AlertCont {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  /* glass effect */
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+}
+
+.Cong {
+  width: 40%;
+  height: 50%;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.Cong h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.Cong h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.Cong h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.Cong button {
+  width: 100%;
+  height: 50px;
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.5s;
+}
