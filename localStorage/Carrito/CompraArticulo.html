@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const getStorage = () => {
+        const storage = localStorage.getItem("IdComprando");
+        console.log(storage);
+
+        if (storage) {
+          return JSON.parse(storage);
+        } else {
+          return [];
+        }
+      };
+      const createArticle = () => {
+        const storage = getStorage();
+        console.log(storage);
+        const article = document.createElement("article");
+        article.classList.add("article");
+        article.innerHTML = `
+        <div class="article__img">
+          <img src="${storage[0].img}" alt="" />
+        </div>
+        <div class="article__info">
+          <h3 class="article__title">${storage[0].title}</h3>
+          <p class="article__description">${storage[0].description}</p>
+          <p class="article__price">${storage[0].price}</p>
+        </div>
+        <div class="article__btn">
+          <button class="btn btn--primary">Comprar</button>
+        </div>
+        `;
+        return article;
+      };
+      const render = () => {
+        const article = createArticle();
+        const container = document.querySelector(".container");
+        container.appendChild(article);
+      };
+      render();
+    </script>
+  </body>
+</html>
