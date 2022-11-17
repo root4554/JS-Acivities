@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Offers</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    
+    <div class="main">
+      <div class="sidebar">
+        <div class="header">
+          <h1>OfferLand</h1>
+          <div class="filter">
+            <h2>Filter</h2>
+            <div class="filter__item">
+              <label for="destination">Province</label>
+              <select name="destination" id="destination">
+                <option value="All">All</option>
+                <option value="IRUN">Irun</option>
+                <option value="ERRENTERIA">Renteria</option>
+                <option value="HONDARRIBIA">Hondarribia</option>
+                <option value="Donostia/SAN SEBASTIÁN">Donostia</option>
+              </select>
+            </div>
+
+            <div class="button">
+              <button>Filter</button>
+            </div>
+            <div class="languages">
+              <div class="eusk">
+                <!-- world icon -->
+                <img src="../assets/icons8-geografía-50.png" />
+                <a selected="false" id="eus" href="#">Eus <span>| EU</span></a>
+              </div>
+              <!-- arrow -->
+              <img src="../assets/icons8-cambiar-tamaño-horizontal-50.png" />
+              <div class="esp">
+                <!-- world icon -->
+
+                <a selected="true" id="esp" href="#">Esp <span>| ES</span></a>
+                <img src="../assets/icons8-geografía-50.png" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="content"></div>
+    </div>
+
+    <script src="../js/json-offers-esp.js"></script>
+    <script src="../js/json-offers-eus.js"></script>
+    <script src="../js/main-logic.js"></script>
+  </body>
+</html>

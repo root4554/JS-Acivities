@@ -1,0 +1,148 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Great+Vibes&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,700;0,800;1,500;1,600&display=swap");
+
+:root {
+  --main-color: #151515;
+  --seconary-color: #1c1c1e;
+  --third-color: #6b6b70;
+  --red-color: #ff0098;
+  --red-color-secondary: #db2777;
+  --formal-font: "Raleway", sans-serif;
+  --cursive-font: "Dancing Script", cursive;
+  --vibes-font: "Great Vibes", cursive;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--formal-font);
+}
+
+body {
+  background-color: var(--main-color);
+  color: #fff;
+}
+
+.main,
+.filter__item,
+.button,
+.offer__head,
+.languages,
+.offer__btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.sidebar {
+  width: 20%;
+  height: 100vh;
+  background-color: var(--seconary-color);
+  padding: 20px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+h1,
+h2 {
+  margin-bottom: 20px;
+}
+h1 {
+  font-size: 4rem;
+  color: var(--red-color);
+  font-family: var(--vibes-font);
+}
+.filter h2 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--third-color);
+}
+.filter__item,
+.button,
+.offer__head {
+  margin-bottom: 10px;
+  justify-content: space-between;
+}
+
+button,
+.offer button {
+  background-color: var(--red-color-secondary);
+  color: #fff;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.5s;
+}
+button:hover {
+  background-color: var(--seconary-color);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transition: all 0.5s;
+}
+.content {
+  width: 80%;
+  padding: 20px;
+  margin-left: 20%;
+}
+
+.offer__head p {
+  font-weight: 500;
+  color: var(--third-color);
+}
+.offer__body p:nth-child(2) {
+  letter-spacing: 0.018em;
+  line-height: 1.4;
+  color: #e7e7e7;
+  font-size: 0.9rem;
+  margin-bottom: 2em;
+}
+.offer__body p {
+  margin-bottom: 10px;
+}
+.offer__body p:first-child {
+  background-color: var(--third-color);
+  padding: 2px 5px;
+  border-radius: 5px;
+  font-weight: 500;
+  color: #fff;
+  width: fit-content;
+}
+.offer__body p:last-child {
+  font-weight: 700;
+  font-size: 0.8rem;
+}
+
+.offer__btn {
+  justify-content: end;
+  width: 100%;
+}
+/* .offer button {
+} */
+
+.languages {
+  margin-top: 40px;
+}
+.languages img {
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+.languages a {
+  color: white;
+  transition: all 0.5s;
+}
+.languages a:hover {
+  color: var(--red-color);
+}
+.languages span {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--third-color);
+}
+.languages span:hover {
+  color: var(--red-color);
+}

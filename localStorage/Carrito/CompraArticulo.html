@@ -7,41 +7,87 @@
     <title>Document</title>
   </head>
   <body>
+    <style>
+      .container {
+        width: 100%;
+        height: 100vh;
+        flex-direction: column;
+      }
+      .container,
+      .article {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .article {
+        width: 50%;
+        justify-content: space-around;
+      }
+      .article__info {
+        width: 50%;
+      }
+      .article__info__title,
+      .article__info__data {
+        display: flex;
+        justify-content: space-between;
+      }
+      .article__image,
+      .article__info,
+      .article__button {
+        border: 1px solid black;
+        padding: 20px;
+      }
+    </style>
+    <div class="container"></div>
+
+    <script src="Carrito.js"></script>
+
     <script>
       const getStorage = () => {
-        const storage = localStorage.getItem("IdComprando");
+        const storage = sessionStorage.getItem("IdComprando");
         console.log(storage);
 
-        if (storage) {
-          return JSON.parse(storage);
-        } else {
-          return [];
-        }
+        return storage;
       };
+
       const createArticle = () => {
-        const storage = getStorage();
+        let storage = getStorage();
         console.log(storage);
-        const article = document.createElement("article");
+        const articleInfo = aArticulos.find((article) => article.id == storage);
+        console.log(articleInfo);
+
+        const article = document.createElement("div");
         article.classList.add("article");
         article.innerHTML = `
-        <div class="article__img">
-          <img src="${storage[0].img}" alt="" />
-        </div>
-        <div class="article__info">
-          <h3 class="article__title">${storage[0].title}</h3>
-          <p class="article__description">${storage[0].description}</p>
-          <p class="article__price">${storage[0].price}</p>
-        </div>
-        <div class="article__btn">
-          <button class="btn btn--primary">Comprar</button>
-        </div>
+          <div class="article__image">
+            <h2>Image</h2>
+            <img src="${articleInfo.src()}" alt="" />
+          </div>
+          <div class="article__info">
+            <div class="article__info__title">
+            <h2>Nombre</h2>
+            <h2>Cantidad</h2>
+            <h2>Precio</h2>
+            </div>
+            <div class="article__info__data">
+            <p>${articleInfo.nombre}</p>
+            <input type="text" placeholder="Cantidad" />
+            <p>${articleInfo.precio}</p>
+            </div>
+          </div>
+          <div class="article__button">
+            <h2>Compra</h2>
+            <button class="btn btn-primary" onclick="Comprar(${
+              articleInfo.id
+            })">Comprar</button>
+          </div>
         `;
         return article;
       };
       const render = () => {
-        const article = createArticle();
+        const main = createArticle();
         const container = document.querySelector(".container");
-        container.appendChild(article);
+        container.appendChild(main);
       };
       render();
     </script>
