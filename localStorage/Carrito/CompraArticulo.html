@@ -38,21 +38,22 @@
         padding: 20px;
       }
     </style>
-    <div class="container"></div>
+    <div class="container">
+      <div class="icon">
+        <img src="Mercado/atras.png" height="50px" width="50px" />
+      </div>
+    </div>
 
     <script src="Carrito.js"></script>
 
     <script>
-      const getStorage = () => {
-        const storage = sessionStorage.getItem("IdComprando");
-        console.log(storage);
-
-        return storage;
+      const getItem = () => {
+        const storedItem = sessionStorage.getItem("IdComprando");
+        return storedItem;
       };
 
       const createArticle = () => {
-        let storage = getStorage();
-        console.log(storage);
+        let storedItem = getItem();
         const articleInfo = aArticulos.find((article) => article.id == storage);
         console.log(articleInfo);
 
@@ -84,12 +85,15 @@
         `;
         return article;
       };
+
       const render = () => {
         const main = createArticle();
         const container = document.querySelector(".container");
         container.appendChild(main);
       };
       render();
+
+      const Comprar = () => {};
     </script>
   </body>
 </html>
