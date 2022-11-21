@@ -47,15 +47,17 @@
     <script src="Carrito.js"></script>
 
     <script>
-      const getItem = () => {
-        const storedItem = sessionStorage.getItem("IdComprando");
+      const getStoredItem = (item) => {
+        const storedItem = sessionStorage.getItem(item);
         return storedItem;
       };
 
       const createArticle = () => {
-        let storedItem = getItem();
-        const articleInfo = aArticulos.find((article) => article.id == storage);
-        console.log(articleInfo);
+        let storedItem = getStoredItem("IdComprando");
+        const articleInfo = aArticulos.find(
+          (article) => article.id == storedItem
+        );
+        // console.log(articleInfo);
 
         const article = document.createElement("div");
         article.classList.add("article");
@@ -73,14 +75,12 @@
             <div class="article__info__data">
             <p>${articleInfo.nombre}</p>
             <input type="text" placeholder="Cantidad" />
-            <p>${articleInfo.precio}</p>
+            <p>${articleInfo.precio}€</p>
             </div>
           </div>
           <div class="article__button">
             <h2>Compra</h2>
-            <button class="btn btn-primary" onclick="Comprar(${
-              articleInfo.id
-            })">Comprar</button>
+            <button class="btn btn-primary" onclick="buy()">Comprar</button>
           </div>
         `;
         return article;
@@ -93,7 +93,28 @@
       };
       render();
 
-      const Comprar = () => {};
+      // comprar
+      let selled = false;
+      let inputVal;
+
+      const saveBuyed = () => {
+        console.log(inputVal);
+        console.log("WTF");
+        let storedItem = getStoredItem("IdComprando");
+
+        sessionStorage.setItem("buyedItems", inputVal);
+      };
+
+      const buy = () => {
+        inputVal = document.querySelector("input").value;
+        if (inputVal > 0) {
+          selled = true;
+          saveBuyed();
+          // history.go(-1);
+        } else {
+          alert("No se ha podido realizar la compra");
+        }
+      };
     </script>
   </body>
 </html>
