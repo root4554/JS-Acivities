@@ -9,17 +9,29 @@ body.addEventListener("mousemove", (e) => {
   mouseY.textContent = clientY;
 });
 
-const search = (engine) => {
-  window.open(`${engine.href}${value}`);
-  console.log(`${engine.href}${value}`);
+const search = (value, engine) => {
+  engineName = engine.getAttribute("name");
+  if (engineName == "G") {
+    window.open(`https://www.google.com/search?q=${value}`);
+  }
+  if (engineName == "B") {
+    window.open(`https://www.bing.com/search?q=${value}`);
+  }
+  if (engineName == "A") {
+    window.open(`https://www.ask.com/web?q=${value}`);
+  }
 };
 
 body.addEventListener("contextmenu", (e) => {
   e.preventDefault();
   let body = document.querySelector("body");
 
-  body.removeChild(body.lastChild);
-  const menu = document.createElement("div");
+  let existmenu = document.querySelector(".menu");
+  if (existmenu) {
+    body.removeChild(existmenu);
+  }
+
+  let menu = document.createElement("div");
   menu.classList.add("menu");
   menu.innerHTML = `<a  name="G" target="blank">Google</a>
                     <a  name="B" target="blank">bing</a>
@@ -37,34 +49,29 @@ body.addEventListener("contextmenu", (e) => {
   const mouseClick = document.querySelector("#mouseClick");
   mouseClick.textContent = "click derecho";
 
-  let searchEngine = document.querySelector("a");
-  searchEngine.addEventListener("click", (e) => {
-    const input = document.querySelector("#search");
-    const value = input.value;
-    engineName = searchEngine.getAttribute("name");
-    if (engineName === "G") {
-      console.log("google");
-      window.open(`https://www.google.com/search?q=${value}`);
-    }
-    if (engineName === "B") {
-      console.log("bing");
-      window.open(`https://www.bing.com/search?q=${value}`);
-    }
-    if (engineName === "A") {
-      console.log("ask");
-      window.open(`https://www.ask.com/web?q=${value}`);
-    }
+  let engines = document.querySelectorAll("a");
+  engines.forEach((engine) => {
+    engine.addEventListener("click", (e) => {
+      let value = document.querySelector("#search").value;
+      search(value, engine);
+    });
   });
 });
 
 body.addEventListener("click", (e) => {
   mouseClick.textContent = "click izquierdo";
-  body.removeChild(body.lastChild);
+  let existmenu = document.querySelector(".menu");
+  if (existmenu) {
+    body.removeChild(existmenu);
+  }
 });
 
 const EscPressed = (e) => {
   if (e.key === "Escape") {
-    body.removeChild(body.lastChild);
+    let existmenu = document.querySelector(".menu");
+    if (existmenu) {
+      body.removeChild(existmenu);
+    }
   }
 };
 window.addEventListener("keydown", EscPressed);
