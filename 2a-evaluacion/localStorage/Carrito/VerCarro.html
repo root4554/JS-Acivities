@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      table,
+      tr,
+      td {
+        padding: 10px;
+        border-collapse: collapse;
+      }
+      td {
+        border: 2px solid #666;
+      }
+      tr {
+        text-align: center;
+      }
+      .container {
+        margin: 0 auto;
+      }
+    </style>
+    <div class="main">
+      <table class="container"></table>
+      <div class="icon">
+        <img src="Mercado/atras.png" height="50px" width="50px" />
+      </div>
+    </div>
+    <script src="Carrito.js"></script>
+    <script>
+      let productCounter = 0;
+      const getBuyedItem = () => {
+        let storedItems = JSON.parse(sessionStorage.getItem("Compra"));
+        let asArray = Object.entries(storedItems);
+        let filtred = asArray.filter(([key, value]) => value > 0);
+        console.log(filtred.values());
+        const container = document.querySelector(".container");
+        container.innerHTML = `
+            <tr><td>Articulo</td><td>Imagen</td><td>Cantidad</td><td>Precio</td><td colspan="1">Total</td></tr>`;
+        filtred.forEach(([key, value]) => {
+          const articleInfo = aArticulos.find((article) => article.id == key);
+          container.innerHTML += `
+                <tr>
+                  <td>${articleInfo.nombre}</td>
+                  <td><img src="${articleInfo.src()}" height="50px" width="50px" /></td>
+                  <td>${value}</td>
+                  <td>${articleInfo.precio}</td>
+                  <td>${articleInfo.precio * value}</td>
+                  <td><button onclick="deleteItem(${key})">Eliminar</button></td>
+                </tr>
+                   
+              `;
+        });
+      };
+      getBuyedItem();
+      const checkIfEmpty = () => {
+        let storedItems = JSON.parse(sessionStorage.getItem("Compra"));
+        let asArray = Object.entries(storedItems);
+        let filtred = asArray.filter(([key, value]) => value > 0);
+        filtred.forEach(([key, value]) => {
+          if (value > 0) {
+            productCounter++;
+          }
+        });
+        if (productCounter == 0) {
+          history.go(-1);
+        }
+      };
+      const deleteItem = (Pkey) => {
+        let storedItems = JSON.parse(sessionStorage.getItem("Compra"));
+        let asArray = Object.entries(storedItems);
+        let filtred = asArray.filter(([key, value]) => value > 0);
+        filtred.forEach(([key, value]) => {
+          if (key == Pkey) {
+            storedItems[key] = 0;
+            sessionStorage.setItem("Compra", JSON.stringify(storedItems));
+            getBuyedItem();
+          }
+        });
+        checkIfEmpty();
+      };
+
+      document.querySelector(".icon").addEventListener("click", () => {
+        history.go(-1);
+      });
+    </script>
+  </body>
+</html>

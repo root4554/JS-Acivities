@@ -91,7 +91,7 @@
         );
         console.log(articleInfo.id);
         aCompra = JSON.parse(sessionStorage.Compra);
-        aCompra[articleInfo.id] = inputVal;
+        aCompra[articleInfo.id] = parseInt(inputVal);
         console.log(aArticulos);
         sessionStorage.Compra = JSON.stringify(aCompra);
 
