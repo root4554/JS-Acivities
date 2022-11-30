@@ -20,3 +20,5 @@ function Articulo(id, nombre, precio, imagen) {
 }
 
 const Article = (id, name, price, img) => ({ id, name, price, img });
+
+let buyedItemes = [];

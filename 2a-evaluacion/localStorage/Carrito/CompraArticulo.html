@@ -23,19 +23,15 @@
         width: 50%;
         justify-content: space-around;
       }
-      .article__info {
-        width: 50%;
+      table,
+      tr,
+      td {
+        border: 2px solid #666;
+        padding: 10px;
+        border-collapse: collapse;
       }
-      .article__info__title,
-      .article__info__data {
-        display: flex;
-        justify-content: space-between;
-      }
-      .article__image,
-      .article__info,
-      .article__button {
-        border: 1px solid black;
-        padding: 20px;
+      tr {
+        text-align: center;
       }
     </style>
     <div class="container">
@@ -57,32 +53,18 @@
         const articleInfo = aArticulos.find(
           (article) => article.id == storedItem
         );
-        // console.log(articleInfo);
-
         const article = document.createElement("div");
         article.classList.add("article");
         article.innerHTML = `
-          <div class="article__image">
-            <h2>Image</h2>
-            <img src="${articleInfo.src()}" alt="" />
-          </div>
-          <div class="article__info">
-            <div class="article__info__title">
-            <h2>Nombre</h2>
-            <h2>Cantidad</h2>
-            <h2>Precio</h2>
-            </div>
-            <div class="article__info__data">
-            <p>${articleInfo.nombre}</p>
-            <input type="text" placeholder="Cantidad" />
-            <p>${articleInfo.precio}€</p>
-            </div>
-          </div>
-          <div class="article__button">
-            <h2>Compra</h2>
-            <button class="btn btn-primary" onclick="buy()">Comprar</button>
-          </div>
-        `;
+                <table ><tr><td>Articulo</td><td>Imagen</td><td>Cantidad</td><td>Precio</td></tr>
+               <tr><td> ${articleInfo.nombre}</td>
+              <td><img src="${articleInfo.src()} "></td>
+              <td><input type='number'></td>
+              <td>${articleInfo.precio}</td></tr>
+              <tr><td colspan="4" ><button>Comprar</button></td></tr>
+              </table>
+              `;
+
         return article;
       };
 
@@ -93,16 +75,32 @@
       };
       render();
 
-      // comprar
+      // comprar articulo y añadirlo al carrito
+
       let selled = false;
       let inputVal;
 
       const saveBuyed = () => {
-        console.log(inputVal);
-        console.log("WTF");
         let storedItem = getStoredItem("IdComprando");
+        inputVal = document.querySelector("input").value;
+        const articleInfo = aArticulos.find(
+          (article) => article.id == storedItem
+        );
+        console.log(articleInfo.id);
+        aCompra = JSON.parse(sessionStorage.Compra);
+        aCompra[articleInfo.id] = inputVal;
+        console.log(aArticulos);
+        sessionStorage.Compra = JSON.stringify(aCompra);
 
-        sessionStorage.setItem("buyedItems", inputVal);
+        // let precioTotal = articleInfo.precio * inputVal;
+        // const item = {
+        //   id: storedItem,
+        //   cantidad: inputVal,
+        //   precioTotal: precioTotal,
+        // };
+        // buyedItemes.push(item);
+        // buyedItemes = JSON.stringify(buyedItemes);
+        // sessionStorage.setItem("buyedItemsList", buyedItemes);
       };
 
       const buy = () => {
@@ -110,11 +108,12 @@
         if (inputVal > 0) {
           selled = true;
           saveBuyed();
-          // history.go(-1);
+          history.go(-1);
         } else {
           alert("No se ha podido realizar la compra");
         }
       };
+      document.querySelector("button").addEventListener("click", buy);
     </script>
   </body>
 </html>

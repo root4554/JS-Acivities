@@ -34,7 +34,7 @@
       } else {
         aCompra = JSON.parse(sessionStorage.Compra);
       }
-
+ 
       iTotal = 0;
       //Crear tabla
       sCadena =
@@ -59,6 +59,7 @@
           '<img style="cursor:pointer" src="Mercado/carrolleno.jpg" id="imCarro" width="108" height="98" alt="" onclick="VerCarro()"; />' +
           sCadena;
       }
+
       document.write(sCadena);
       function Comprar(sArticulo) {
         sessionStorage.IdComprando = sArticulo;
