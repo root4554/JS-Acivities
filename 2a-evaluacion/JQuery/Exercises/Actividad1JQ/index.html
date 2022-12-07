@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="persona donald">
+      <h1>Donald Trump</h1>
+    </div>
+    <div class="persona hillary">
+      <h1>hillary Clinton</h1>
+    </div>
+    <div class="persona Bernard">
+      <h1>Bernard Sanders</h1>
+    </div>
+    <div class="persona Lincoln">
+      <h1>Abraham Lincoln</h1>
+    </div>
+    <script>
+      $(document).ready(function () {
+        $(".persona").click(function () {
+          $(this).append(".noticia");
+          $(".noticia").append("img");
+          $(".noticia").append("p");
+        });
+      });
+    </script>
+  </body>
+</html>
