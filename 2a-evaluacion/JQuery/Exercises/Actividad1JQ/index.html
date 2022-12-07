@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script src="logic.js"></script>
   </head>
   <body>
     <div class="persona donald">
@@ -23,9 +24,10 @@
     <script>
       $(document).ready(function () {
         $(".persona").click(function () {
-          $(this).append(".noticia");
-          $(".noticia").append("img");
-          $(".noticia").append("p");
+          // $(this).append(".noticia");
+          let index = $(this).index() + 1;
+          console.log(index);
+          $(this).append(`<p class="noticia">Noticia ${sNoticia(index)}</p>`);
         });
       });
     </script>
