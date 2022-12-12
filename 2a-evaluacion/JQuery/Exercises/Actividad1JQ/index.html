@@ -45,23 +45,12 @@
   <body>
     <div class="content"></div>
     <script>
-      aNoticias.forEach((element) => {
-        $(".content").append(`
-            <div class="noticia">
-              <div class="title">
-                <h1>${element[1]}</h1>
-              </div>
-              <div class="info">
-                <img src="${element[3]}" alt="" />
-                <p>${element[2]}</p>
-            </div>
-          `);
-      });
-      $(".noticia").click(function () {
-        $(".noticia").children(".info").hide();
-        $(".title").removeClass("bg");
-        $(this).children(".title").toggleClass("bg");
-        $(this).children(".info").toggle(300);
+      $(document).ready(function () {
+        $(".persona").click(function () {
+          $(this).append(".noticia");
+          $(".noticia").append("img");
+          $(".noticia").append("p");
+        });
       });
     </script>
   </body>

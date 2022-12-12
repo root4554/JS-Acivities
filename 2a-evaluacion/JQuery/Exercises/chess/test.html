@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ajedrez</title>
+  </head>
+
+  <body>
+    <!DOCTYPE html>
+
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>Document</title>
+        <style>
+          .dCasn {
+            width: 80px;
+            height: 80px;
+            background-color: rgb(0, 0, 255);
+          }
+
+          .dCasb {
+            width: 80px;
+            height: 80px;
+            background-color: aquamarine;
+          }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script>
+          var img = new Image();
+          img.id = "Caballo";
+          img.src = "Caballo.png";
+          img.width = "80";
+          img.height = "80";
+          $(document).ready(function () {
+            $("#divCaballo").append(img);
+            $("#Caballo").attr("draggable", true);
+            $("#Caballo").on("dragstart", function (event) {
+              event.originalEvent.dataTransfer.setData("text", this.id);
+              console.log("start");
+            });
+            $(".dCasb,.dCasn").on("dragenter", function (event) {
+              event.preventDefault();
+              console.log("enter");
+            });
+            $(".dCasb,.dCasn").on("dragover", function (event) {
+              event.preventDefault();
+              console.log("over");
+            });
+            $(".dCasb,.dCasn").on("dragleave", function (event) {
+              event.preventDefault();
+              console.log("leave");
+            });
+            $(".dCasb,.dCasn").on("drop", function (event) {
+              console.log("drop");
+              sOriginal = event.originalEvent.dataTransfer.getData("text");
+              console.log(sOriginal);
+              $("#Caballo").appendTo(this);
+            });
+          });
+        </script>
+      </head>
+
+      <body>
+        <div
+          id="divCaballo"
+          style="position: absolute; left: 200px; top: 200px"
+        ></div>
+        <div
+          class="dCasn"
+          id="pos11"
+          style="position: absolute; left: 400px; top: 200px"
+        ></div>
+        <div
+          class="dCasb"
+          id="pos12"
+          style="position: absolute; left: 200px; top: 400px"
+        ></div>
+      </body>
+    </html>
+  </body>
+</html>
