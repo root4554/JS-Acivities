@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="ui1/jquery-ui.min.css" />
+    <script src="ui1/external/jquery/jquery.js"></script>
+    <script src="ui1/jquery-ui.min.js"></script>
+  </head>
+  <script>
+    $(document).ready(function () {
+      $("#tabs").tabs({
+        collapsible: true,
+      });
+    });
+  </script>
+
+  <body>
+    <div id="tabs">
+      <ul>
+        <li><a href="#tabs-1">SMR</a></li>
+        <li><a href="#tabs-2">DAW</a></li>
+      </ul>
+      <div id="tabs-1">
+        <p>5h Sistemas operativos monopuesto.</p>
+        <p>7h Aplicaciones ofimáticas.</p>
+        <p>7h Redes locales.</p>
+        <p>3h Seguridad informática.</p>
+        <p>7h Montaje y mantenimiento de equipos.</p>
+        <p>1h Inglés técnico.</p>
+      </div>
+
+      <div id="tabs-2">
+        <p>5h Sistemas informáticos.</p>
+        <p>6h Bases de datos.</p>
+        <p>8h Programación.</p>
+        <p>4h Lenguajes de marcas y sistemas de gestión de información.</p>
+        <p>3h Entornos de desarrollo.</p>
+        <p>1h Inglés Técnico</p>
+        <p>3h Formación y Orientación Laboral.</p>
+      </div>
+    </div>
+  </body>
+</html>

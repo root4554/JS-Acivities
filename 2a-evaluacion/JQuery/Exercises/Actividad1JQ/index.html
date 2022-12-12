@@ -62,6 +62,13 @@
         $(".title").removeClass("bg");
         $(this).children(".title").toggleClass("bg");
         $(this).children(".info").toggle(300);
+        $(document).ready(function () {
+          $(".persona").click(function () {
+            $(this).append(".noticia");
+            $(".noticia").append("img");
+            $(".noticia").append("p");
+          });
+        });
       });
     </script>
   </body>
