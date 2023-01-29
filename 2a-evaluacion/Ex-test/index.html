@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Test-Ex2</title>
+    <style>
+      .users-list {
+        width: 50%;
+        margin: 0 auto;
+      }
+      .edit-user-status {
+        width: 50%;
+        margin: 0 auto;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        border: 1px solid black;
+        padding: 5px;
+      }
+      th {
+        text-align: left;
+      }
+      tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+      tr:hover {
+        background-color: #ddd;
+      }
+      .edit-user-status {
+        width: 50%;
+        margin: 0 auto;
+      }
+      .edit-user-status label {
+        display: block;
+      }
+      .edit-user-status select {
+        display: block;
+        margin-bottom: 10px;
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="ui1/jquery-ui.min.css" />
+    <script src="ui1/external/jquery/jquery.js"></script>
+    <script src="ui1/jquery-ui.min.js"></script>
+  </head>
+  <body>
+    <div class="users-list">
+      <table></table>
+    </div>
+    <div class="edit-user-status">
+      <form action="" method="post">
+        <label for="user">User</label>
+        <select name="name" id="name"></select>
+        <label for="status">Status</label>
+        <select name="status">
+          <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
+        </select>
+        <input type="submit" value="Submit" />
+        <input type="button" value="abort" id="abort" />
+      </form>
+    </div>
+    <script src="logic.js"></script>
+  </body>
+</html>

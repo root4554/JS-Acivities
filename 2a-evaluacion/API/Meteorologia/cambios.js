@@ -4,7 +4,7 @@ const setInfo = () => {
   console.log(city, state);
   // Javascript fetch
   const options = {
-    method: "PUT",
+    method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       Ciudad: "city",
